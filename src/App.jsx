@@ -26,7 +26,7 @@ export default function App() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -43,7 +43,7 @@ export default function App() {
       {/* Navigation Header */}
       <Navbar onOpenQuote={() => setIsQuoteOpen(true)} />
 
-      {/* Main Content Sections matching Figma Structure */}
+      {/* Main Content Sections */}
       <main className="relative z-10">
         <Hero onOpenQuote={() => setIsQuoteOpen(true)} />
         <Services onOpenQuote={() => setIsQuoteOpen(true)} />
@@ -66,14 +66,15 @@ export default function App() {
       />
 
       {/* Floating Action Buttons: Scroll-To-Top & Floating WhatsApp */}
-      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-3">
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-center gap-2.5 sm:gap-3">
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className="p-3 rounded-full bg-white border border-blue-200 text-[#0077B6] hover:text-slate-950 hover:border-blue-400 shadow-xl transition-all duration-300 hover:scale-110"
+            className="p-2.5 sm:p-3 rounded-full bg-white border border-blue-200 text-[#0077B6] hover:text-slate-950 hover:border-blue-400 shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 touch-active"
             title="Scroll to Top"
+            aria-label="Scroll to top of page"
           >
-            <ArrowUp className="w-5 h-5" />
+            <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         )}
 
@@ -81,14 +82,14 @@ export default function App() {
           href="https://wa.me/919562896069"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-3.5 rounded-full bg-emerald-500 text-white shadow-[0_0_25px_rgba(16,185,129,0.4)] hover:scale-110 transition-all duration-300 flex items-center justify-center group"
+          className="p-3 sm:p-3.5 rounded-full bg-emerald-500 text-white shadow-[0_0_25px_rgba(16,185,129,0.4)] hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group touch-active"
           title="Direct WhatsApp Chat"
+          aria-label="Chat directly with FourDouble Solutions on WhatsApp"
         >
-          <MessageSquare className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+          <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform" />
         </a>
       </div>
 
     </div>
   );
 }
-

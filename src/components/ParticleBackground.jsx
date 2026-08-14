@@ -19,16 +19,25 @@ export default function ParticleBackground() {
       height = canvas.height = window.innerHeight;
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
 
-    // Particle config
-    const particleCount = Math.min(Math.floor(width / 16), 85);
+    // Mobile optimized particle count
+    const isMobile = width < 768;
+    const particleCount = isMobile ? Math.min(Math.floor(width / 22), 25) : Math.min(Math.floor(width / 16), 75);
+    const maxLinkDistance = isMobile ? 95 : 125;
     const particles = [];
-    const mouse = { x: null, y: null, radius: 160 };
+    const mouse = { x: null, y: null, radius: isMobile ? 100 : 150 };
 
     const handleMouseMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+    };
+
+    const handleTouchMove = (e) => {
+      if (e.touches && e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
     };
 
     const handleMouseLeave = () => {
@@ -36,8 +45,10 @@ export default function ParticleBackground() {
       mouse.y = null;
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+    window.addEventListener('touchend', handleMouseLeave, { passive: true });
 
     const particleRgb = '0, 119, 182';
 
@@ -45,10 +56,10 @@ export default function ParticleBackground() {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.7;
-        this.vy = (Math.random() - 0.5) * 0.7;
-        this.radius = Math.random() * 2.0 + 1.0;
-        this.baseAlpha = Math.random() * 0.45 + 0.25;
+        this.vx = (Math.random() - 0.5) * (isMobile ? 0.4 : 0.6);
+        this.vy = (Math.random() - 0.5) * (isMobile ? 0.4 : 0.6);
+        this.radius = Math.random() * 1.6 + 0.8;
+        this.baseAlpha = Math.random() * 0.35 + 0.2;
         this.alpha = this.baseAlpha;
       }
 
@@ -68,7 +79,7 @@ export default function ParticleBackground() {
 
           if (dist < mouse.radius) {
             const force = (mouse.radius - dist) / mouse.radius;
-            this.alpha = Math.min(1, this.baseAlpha + force * 0.5);
+            this.alpha = Math.min(0.8, this.baseAlpha + force * 0.4);
           } else {
             this.alpha = this.baseAlpha;
           }
@@ -99,13 +110,13 @@ export default function ParticleBackground() {
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 130) {
-            const opacity = (1 - dist / 130) * 0.35;
+          if (dist < maxLinkDistance) {
+            const opacity = (1 - dist / maxLinkDistance) * 0.3;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = `rgba(${particleRgb}, ${opacity})`;
-            ctx.lineWidth = 0.9;
+            ctx.lineWidth = 0.75;
             ctx.stroke();
           }
         }
@@ -119,7 +130,9 @@ export default function ParticleBackground() {
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('touchend', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -127,7 +140,7 @@ export default function ParticleBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-85"
+      className="fixed inset-0 pointer-events-none z-0 opacity-80"
     />
   );
 }

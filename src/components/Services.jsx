@@ -80,36 +80,36 @@ export default function Services({ onOpenQuote }) {
     : serviceData.filter(s => s.category === activeTab);
 
   return (
-    <section id="services" className="py-24 relative overflow-hidden bg-white">
+    <section id="services" className="py-16 sm:py-24 relative overflow-hidden bg-white">
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#0077B6]/10 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#00B4D8]/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-72 sm:w-96 h-72 sm:h-96 bg-[#0077B6]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-[#00B4D8]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Figma Header Style: "What We Do" */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-[#0077B6] border border-blue-200 text-xs font-bold uppercase tracking-wider mb-4">
+        {/* Header: "What We Do" */}
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 text-[#0077B6] border border-blue-200 text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4">
             <Sparkles className="w-3.5 h-3.5" />
             <span>What We Do</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-6 text-[#0A192F]">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6 text-[#0A192F]">
             Comprehensive <span className="text-gradient-electric">Digital Solutions</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600">
+          <p className="text-sm sm:text-base lg:text-lg text-slate-600">
             Tailored digital engineering and brand strategy built to elevate startups, local enterprises, and high-growth businesses.
           </p>
         </div>
 
-        {/* Filter Pill Tabs */}
-        <div className="flex items-center justify-center flex-wrap gap-2.5 mb-16">
+        {/* Mobile Swipeable / Desktop Wrapped Filter Tabs */}
+        <div className="flex items-center sm:justify-center overflow-x-auto no-scrollbar gap-2 sm:gap-2.5 pb-2 sm:pb-0 mb-8 sm:mb-14 -mx-3.5 px-3.5 sm:mx-0 sm:px-0">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
-              className={`px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 ${
+              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 shrink-0 touch-active ${
                 activeTab === cat.id
                   ? 'bg-gradient-to-r from-[#0A192F] via-[#0077B6] to-[#00B4D8] text-white shadow-[0_4px_20px_rgba(0,119,182,0.35)] scale-105'
                   : 'bg-slate-100/80 text-slate-700 hover:text-[#0077B6] border border-slate-200/80'
@@ -120,8 +120,8 @@ export default function Services({ onOpenQuote }) {
           ))}
         </div>
 
-        {/* 4 Service Cards matching Figma structure */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* 4 Service Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
           {filteredServices.map((service) => {
             const MainIcon = service.icon;
             const whatsappMsg = encodeURIComponent(`Hi FourDouble Solutions, I am interested in inquiring about your ${service.title} service.`);
@@ -129,47 +129,47 @@ export default function Services({ onOpenQuote }) {
             return (
               <div
                 key={service.id}
-                className={`group p-8 rounded-3xl border transition-all duration-300 relative flex flex-col justify-between bg-[#F8FAFC] border-slate-200/90 shadow-sm hover:shadow-2xl hover:-translate-y-1 ${service.borderColor}`}
+                className={`group p-5 sm:p-8 rounded-2xl sm:rounded-3xl border transition-all duration-300 relative flex flex-col justify-between bg-[#F8FAFC] border-slate-200/90 shadow-sm hover:shadow-xl sm:hover:shadow-2xl hover:-translate-y-1 ${service.borderColor}`}
               >
                 {/* Background Glow */}
                 <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${service.accentColor} rounded-full blur-3xl pointer-events-none opacity-40 group-hover:opacity-100 transition-opacity`} />
 
                 <div>
                   {/* Card Header */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-4">
-                      <div className="p-4 rounded-2xl border bg-white border-blue-200 text-[#0077B6] shadow-sm group-hover:scale-110 transition-all">
-                        <MainIcon className="w-7 h-7 text-[#0077B6]" />
+                  <div className="flex items-start sm:items-center justify-between mb-4 sm:mb-6">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl border bg-white border-blue-200 text-[#0077B6] shadow-2xs group-hover:scale-105 transition-all shrink-0">
+                        <MainIcon className="w-5 h-5 sm:w-7 sm:h-7 text-[#0077B6]" />
                       </div>
                       <div>
-                        <span className="text-xs font-bold uppercase tracking-wider text-[#0077B6]">
+                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#0077B6] block">
                           {service.categoryName}
                         </span>
-                        <h3 className="text-2xl font-extrabold transition-colors text-[#0A192F] group-hover:text-[#0077B6]">
+                        <h3 className="text-lg xs:text-xl sm:text-2xl font-extrabold transition-colors text-[#0A192F] group-hover:text-[#0077B6] leading-snug">
                           {service.title}
                         </h3>
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-sm leading-relaxed mb-8 text-slate-600 font-medium">
+                  <p className="text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8 text-slate-600 font-medium">
                     {service.desc}
                   </p>
 
                   {/* Feature Breakdown Items */}
-                  <div className="space-y-3.5 mb-8">
+                  <div className="space-y-2.5 sm:space-y-3.5 mb-6 sm:mb-8">
                     {service.items.map((item, idx) => {
                       const ItemIcon = item.icon;
                       return (
-                        <div key={idx} className="p-3.5 rounded-2xl border flex items-start gap-3.5 bg-white border-slate-200/80 shadow-xs">
-                          <div className="p-2 rounded-xl bg-blue-50 text-[#0077B6] shrink-0 mt-0.5 border border-blue-100">
-                            <ItemIcon className="w-4 h-4" />
+                        <div key={idx} className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border flex items-start gap-2.5 sm:gap-3.5 bg-white border-slate-200/80 shadow-2xs">
+                          <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-blue-50 text-[#0077B6] shrink-0 mt-0.5 border border-blue-100">
+                            <ItemIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                           </div>
                           <div>
-                            <h4 className="text-sm font-bold text-[#0A192F]">
+                            <h4 className="text-xs sm:text-sm font-bold text-[#0A192F]">
                               {item.title}
                             </h4>
-                            <p className="text-xs mt-0.5 text-slate-500 font-normal">{item.detail}</p>
+                            <p className="text-[11px] sm:text-xs mt-0.5 text-slate-500 font-normal">{item.detail}</p>
                           </div>
                         </div>
                       );
@@ -178,15 +178,16 @@ export default function Services({ onOpenQuote }) {
                 </div>
 
                 {/* Footer CTA */}
-                <div className="pt-6 border-t flex items-center justify-between border-slate-200">
-                  <span className="text-xs font-bold flex items-center gap-1.5 text-slate-600">
-                    <ShieldCheck className="w-4 h-4 text-emerald-500" /> Agency-grade Quality
+                <div className="pt-4 sm:pt-6 border-t flex items-center justify-between border-slate-200/90 gap-2">
+                  <span className="text-[11px] sm:text-xs font-bold flex items-center gap-1.5 text-slate-600">
+                    <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500 shrink-0" />
+                    <span className="truncate">Agency Quality</span>
                   </span>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 shrink-0">
                     <button
                       onClick={onOpenQuote}
-                      className="inline-flex items-center gap-2 text-xs font-bold text-[#0077B6] bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-full border border-blue-200 transition-all"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0077B6] bg-blue-50 hover:bg-blue-100 px-3.5 sm:px-4 py-2 rounded-full border border-blue-200 transition-all touch-active"
                     >
                       <span>Get Quote</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -195,7 +196,7 @@ export default function Services({ onOpenQuote }) {
                       href={`https://wa.me/919562896069?text=${whatsappMsg}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 hover:bg-emerald-500/20 transition-all"
+                      className="p-2 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 hover:bg-emerald-500/20 transition-all touch-active"
                       title="Direct Chat"
                     >
                       <MessageSquare className="w-4 h-4" />
@@ -212,4 +213,3 @@ export default function Services({ onOpenQuote }) {
     </section>
   );
 }
-
