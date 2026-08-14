@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, FileText, ExternalLink, ArrowUpRight, Clock, Layers, Video, Wand2, Play } from 'lucide-react';
+import { Sparkles, FileText, ExternalLink, ArrowUpRight, Clock, Layers, Video, Wand2, Play, ShoppingCart } from 'lucide-react';
 
 export default function SpecialProducts({ onOpenDemo }) {
   const featuredWork = [
@@ -11,7 +11,7 @@ export default function SpecialProducts({ onOpenDemo }) {
       category: 'Client-Tailored AI Video',
       desc: 'We create customized 4K AI video commercials, photorealistic spokesperson avatars, product visualizers, and social media reels tailored strictly to your specific client requirements, script, and brand guidelines.',
       tags: ['Client Requirements', 'Custom AI Avatars', 'Brand Commercials', 'Tailored Reels'],
-      image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=800&q=80',
+      image: '/assets/projects/ai-video-production.jpg',
       actionType: 'demo',
       demoId: 'ai-video',
       buttonText: 'Preview AI Video Service',
@@ -59,14 +59,14 @@ export default function SpecialProducts({ onOpenDemo }) {
       id: 'smart-pos',
       title: 'Smart POS & Billing Suite',
       subtitle: 'Retail & Enterprise POS',
-      badge: 'Updating Soon',
+      badge: 'Interactive Demo',
       category: 'Custom Software',
       desc: 'Complete offline & cloud POS billing solution with barcode scanning, GST invoicing, live inventory tracking, and sales analytics.',
-      tags: ['POS Billing', 'Inventory System', 'GST Compliance', 'Coming Soon'],
-      image: 'https://images.unsplash.com/photo-1556742049-0a67daf40955?auto=format&fit=crop&w=800&q=80',
-      actionType: 'placeholder',
-      statusBadge: 'Demo Adding Soon',
-      buttonText: 'Updating Soon',
+      tags: ['POS Billing', 'Inventory System', 'GST Compliance', 'Retail POS'],
+      image: '/assets/projects/smart-pos.jpg',
+      actionType: 'demo',
+      demoId: 'billing',
+      buttonText: 'Preview POS System',
     }
   ];
 
@@ -184,11 +184,19 @@ export default function SpecialProducts({ onOpenDemo }) {
                 ) : project.actionType === 'demo' ? (
                   <button
                     onClick={() => onOpenDemo(project.demoId)}
-                    className="w-full py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md active:scale-[0.98] group/btn touch-active"
+                    className={`w-full py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all text-white shadow-md active:scale-[0.98] group/btn touch-active ${
+                      project.demoId === 'billing'
+                        ? 'bg-gradient-to-r from-[#0077B6] via-[#0096c7] to-[#00B4D8] hover:from-[#005f92] hover:to-[#0077B6]'
+                        : 'bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700'
+                    }`}
                   >
-                    <Wand2 className="w-4 h-4 text-purple-200 animate-pulse" />
+                    {project.demoId === 'billing' ? (
+                      <ShoppingCart className="w-4 h-4 text-cyan-200" />
+                    ) : (
+                      <Wand2 className="w-4 h-4 text-purple-200 animate-pulse" />
+                    )}
                     <span>{project.buttonText}</span>
-                    <ArrowUpRight className="w-4 h-4 text-purple-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                    <ArrowUpRight className="w-4 h-4 text-white/80 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                   </button>
                 ) : (
                   <button
