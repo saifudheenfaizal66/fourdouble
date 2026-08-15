@@ -1,20 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, Sparkles, PhoneCall, Home, Layers, Briefcase, HelpCircle, User, MessageSquare, Send } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Sparkles, PhoneCall, Home, Layers, Briefcase, HelpCircle, User, MessageSquare } from 'lucide-react';
 
 export default function Navbar({ onOpenQuote }) {
-  const [scrolled, setScrolled] = useState(false);
+  const [heroComplete, setHeroComplete] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
+      const heroEl = document.getElementById('home');
+      if (heroEl) {
+        const rect = heroEl.getBoundingClientRect();
+        // The hero container pins for the duration of the 240-frame sequence.
+        // Once rect.bottom <= window.innerHeight + 30, the sequence has finished scrubbing.
+        const isComplete = rect.bottom <= window.innerHeight + 30;
+        setHeroComplete(isComplete);
       } else {
-        setScrolled(false);
+        setHeroComplete(window.scrollY > 600);
       }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   // Lock body scroll when mobile menu is active
@@ -39,57 +51,78 @@ export default function Navbar({ onOpenQuote }) {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-xl border-b border-blue-100/80 py-2.5 sm:py-3 shadow-[0_10px_30px_rgba(0,119,182,0.08)]'
-          : 'bg-transparent py-3.5 sm:py-5'
-      }`}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none py-3 sm:py-4 transition-all duration-500 bg-transparent border-none shadow-none">
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center justify-between gap-3">
           
-          {/* Brand Logo & Name */}
-          <a href="#home" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden p-0.5 bg-gradient-to-br from-[#0077B6] via-[#00B4D8] to-[#1E6091] group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(0,119,182,0.25)] shrink-0">
-              <div className="w-full h-full rounded-[10px] flex items-center justify-center overflow-hidden bg-white">
+          {/* 1. Left Island: Glassmorphism Logo Pod with White "FourDouble" Text */}
+          <a
+            href="#home"
+            className={`pointer-events-auto flex items-center gap-2.5 sm:gap-3 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full transition-all duration-300 group shrink-0 ${
+              heroComplete
+                ? 'bg-[#0A192F]/85 hover:bg-[#0A192F]/95 backdrop-blur-2xl border border-white/20 shadow-[0_8px_30px_rgba(0,119,182,0.18)]'
+                : 'bg-transparent border border-transparent shadow-none hover:bg-white/10 hover:backdrop-blur-md'
+            }`}
+          >
+            <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden p-0.5 bg-gradient-to-br from-[#0077B6] via-[#00B4D8] to-[#1E6091] group-hover:scale-105 transition-transform duration-300 shadow-sm shrink-0">
+              <div className="w-full h-full rounded-[10px] flex items-center justify-center overflow-hidden bg-white/95 backdrop-blur-sm">
                 <img
                   src="/assets/logos/main logo.png"
                   alt="FourDouble Solutions Logo"
-                  className="w-7 h-7 sm:w-8 sm:h-8 object-contain transition-transform duration-300 group-hover:rotate-6"
+                  className="w-6 h-6 sm:w-7 sm:h-7 object-contain transition-transform duration-300 group-hover:rotate-6"
                 />
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold text-base sm:text-lg lg:text-xl tracking-tight text-[#0A192F] group-hover:text-[#0077B6] transition-colors leading-tight">
-                FourDouble <span className="text-[#0077B6]">Solutions</span>
+              <span className="font-black text-sm sm:text-base lg:text-lg tracking-tight text-white leading-tight drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+                FourDouble <span className="text-[#00B4D8] font-black group-hover:text-cyan-300 transition-colors">Solutions</span>
               </span>
-              <span className="text-[9px] sm:text-[10px] tracking-widest uppercase font-semibold text-slate-500 group-hover:text-blue-700 transition-colors">
+              <span className="text-[8.5px] sm:text-[9.5px] tracking-widest uppercase font-bold text-slate-300 group-hover:text-white transition-colors drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                 Digital & Tech Agency
               </span>
             </div>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/90 shadow-slate-100 shadow-sm">
+          {/* 2. Center Island: Desktop Navigation Links (Glassmorphic Light Theme when sequence complete, transparent during sequence) */}
+          <nav
+            className={`pointer-events-auto hidden md:flex items-center gap-1 px-4 py-1.5 rounded-full transition-all duration-300 ${
+              heroComplete
+                ? 'bg-white/80 hover:bg-white/90 backdrop-blur-2xl border border-white/80 shadow-[0_8px_30px_rgba(0,119,182,0.12)]'
+                : 'bg-transparent border border-transparent shadow-none'
+            }`}
+          >
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="px-3.5 lg:px-4 py-2 text-xs sm:text-sm font-bold text-slate-700 hover:text-[#0077B6] hover:bg-blue-50/80 rounded-full transition-all duration-200"
+                className={`px-3.5 lg:px-4 py-1.5 text-xs sm:text-sm font-bold rounded-full transition-all duration-200 ${
+                  heroComplete
+                    ? 'text-slate-800 hover:text-[#0077B6] hover:bg-blue-50/80'
+                    : 'text-white/90 hover:text-white hover:bg-white/15 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]'
+                }`}
               >
                 {link.name}
               </a>
             ))}
           </nav>
 
-          {/* Right CTA Button & Quick WhatsApp Icon (Desktop) */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* 3. Right Island: Desktop CTA "Get a Quote" + Quick WhatsApp (Glassmorphic Light Theme when sequence complete, transparent during sequence) */}
+          <div
+            className={`pointer-events-auto hidden md:flex items-center gap-2 p-1 sm:p-1.5 rounded-full transition-all duration-300 ${
+              heroComplete
+                ? 'bg-white/80 hover:bg-white/90 backdrop-blur-2xl border border-white/80 shadow-[0_8px_30px_rgba(0,119,182,0.12)]'
+                : 'bg-transparent border border-transparent shadow-none'
+            }`}
+          >
             <a
               href="https://wa.me/919562896069"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 hover:bg-emerald-500/20 hover:scale-105 transition-all duration-300 touch-active"
+              className={`p-2 sm:p-2.5 rounded-full transition-all duration-300 backdrop-blur-md shadow-2xs touch-active hover:scale-105 ${
+                heroComplete
+                  ? 'bg-emerald-50 text-emerald-600 border border-emerald-200/80 hover:bg-emerald-100'
+                  : 'bg-emerald-500/20 text-emerald-400 border border-emerald-400/30 hover:bg-emerald-500/30'
+              }`}
               title="Quick WhatsApp Chat"
             >
               <PhoneCall className="w-4 h-4" />
@@ -97,19 +130,31 @@ export default function Navbar({ onOpenQuote }) {
 
             <button
               onClick={onOpenQuote}
-              className="relative group overflow-hidden rounded-full p-[1px] font-semibold text-sm focus:outline-none touch-active"
+              className="relative group overflow-hidden rounded-full p-[1px] font-semibold text-sm focus:outline-none touch-active shadow-[0_4px_15px_rgba(0,119,182,0.25)] hover:shadow-[0_6px_20px_rgba(0,119,182,0.35)] transition-all hover:scale-[1.02]"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-[#0A192F] via-[#0077B6] to-[#00B4D8] rounded-full group-hover:opacity-100 opacity-90 transition-opacity duration-300"></span>
-              <span className="relative px-5 py-2.5 rounded-full bg-white text-[#0A192F] group-hover:bg-opacity-95 flex items-center gap-2 transition-all duration-300">
+              <span
+                className={`relative px-4.5 py-1.5 sm:px-5 sm:py-2 rounded-full flex items-center gap-2 transition-all duration-300 backdrop-blur-md ${
+                  heroComplete
+                    ? 'bg-white/95 group-hover:bg-white text-[#0A192F]'
+                    : 'bg-slate-950/85 group-hover:bg-slate-900 text-white'
+                }`}
+              >
                 <Sparkles className="w-4 h-4 text-[#0077B6] animate-pulse" />
-                <span className="font-bold">Get a Quote</span>
+                <span className="font-bold text-xs sm:text-sm">Get a Quote</span>
                 <ArrowUpRight className="w-4 h-4 text-[#0077B6] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </span>
             </button>
           </div>
 
-          {/* Mobile Actions: Quote Pill & Menu Toggle */}
-          <div className="md:hidden flex items-center gap-1.5 xs:gap-2">
+          {/* 4. Mobile Island: Quote Pill & Menu Toggle */}
+          <div
+            className={`pointer-events-auto md:hidden flex items-center gap-1.5 xs:gap-2 px-2 py-1 rounded-full transition-all duration-300 ${
+              heroComplete
+                ? 'bg-white/80 backdrop-blur-2xl border border-white/80 shadow-[0_8px_30px_rgba(0,119,182,0.12)]'
+                : 'bg-transparent border border-transparent shadow-none'
+            }`}
+          >
             <button
               onClick={onOpenQuote}
               className="text-xs px-3 py-1.5 rounded-full bg-gradient-to-r from-[#0077B6] to-[#00B4D8] text-white font-bold shadow-sm shadow-[#0077B6]/30 flex items-center gap-1.5 touch-active active:scale-95"
@@ -120,18 +165,27 @@ export default function Navbar({ onOpenQuote }) {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-slate-800 hover:text-black bg-white/90 border border-slate-200/90 focus:outline-none touch-active active:scale-95 shadow-xs"
+              className={`p-1.5 sm:p-2 rounded-xl focus:outline-none touch-active active:scale-95 shadow-xs transition-all ${
+                heroComplete
+                  ? 'text-slate-800 hover:text-black bg-blue-50/80 backdrop-blur-md border border-blue-100'
+                  : 'text-white hover:text-cyan-300 bg-white/10 backdrop-blur-md border border-white/20'
+              }`}
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5 text-slate-900" /> : <Menu className="w-5 h-5 text-slate-900" />}
+              {mobileMenuOpen ? (
+                <X className={`w-5 h-5 ${heroComplete ? 'text-slate-900' : 'text-white'}`} />
+              ) : (
+                <Menu className={`w-5 h-5 ${heroComplete ? 'text-slate-900' : 'text-white'}`} />
+              )}
             </button>
           </div>
+
         </div>
 
         {/* Mobile Fullscreen / Drawer Overlay Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden fixed inset-x-0 top-[56px] sm:top-[60px] bottom-0 bg-slate-900/60 backdrop-blur-md z-50 flex flex-col justify-between p-3.5 sm:p-4 overflow-y-auto animate-in fade-in duration-200">
-            <div className="bg-white/98 backdrop-blur-2xl rounded-3xl border border-slate-200 p-4 sm:p-5 shadow-2xl space-y-4 max-h-[calc(100vh-85px)] overflow-y-auto">
+          <div className="pointer-events-auto md:hidden fixed inset-x-0 top-[56px] sm:top-[60px] bottom-0 bg-slate-900/40 backdrop-blur-md z-50 flex flex-col justify-between p-3.5 sm:p-4 overflow-y-auto animate-in fade-in duration-200">
+            <div className="bg-white/95 backdrop-blur-2xl rounded-3xl border border-white/80 p-4 sm:p-5 shadow-2xl space-y-4 max-h-[calc(100vh-85px)] overflow-y-auto">
               
               <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                 <span className="text-xs font-extrabold uppercase tracking-widest text-[#0077B6]">Navigation</span>
@@ -189,7 +243,7 @@ export default function Navbar({ onOpenQuote }) {
             {/* Tap outside dismiss prompt */}
             <div 
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2.5 text-center text-xs text-white/80 font-medium cursor-pointer"
+              className="py-2.5 text-center text-xs text-white/90 font-medium cursor-pointer"
             >
               Tap anywhere outside to close
             </div>
