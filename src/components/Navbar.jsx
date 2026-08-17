@@ -171,26 +171,17 @@ export default function Navbar({ onOpenQuote }) {
             </button>
           </div>
 
-          {/* 4. Mobile Island Controls: Quick Quote Pill + Menu Toggle */}
-          <div className="flex md:hidden items-center gap-1.5 shrink-0">
-            <button
-              onClick={onOpenQuote}
-              className="text-[11px] xs:text-xs px-2.5 py-1.5 rounded-full bg-gradient-to-r from-[#0077B6] to-[#00B4D8] text-white font-bold shadow-sm shadow-[#0077B6]/30 flex items-center gap-1 touch-active active:scale-95"
-              aria-label="Open Quote Modal"
-            >
-              <Sparkles className="w-3 h-3 text-cyan-200" />
-              <span>Quote</span>
-            </button>
-
+          {/* 4. Mobile Island Controls: Menu Toggle */}
+          <div className="flex md:hidden items-center shrink-0">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-1.5 rounded-full focus:outline-none touch-active active:scale-95 transition-all text-slate-800 hover:text-black bg-slate-100/90 border border-slate-200"
+              className="p-2 rounded-full focus:outline-none touch-active active:scale-95 transition-all text-slate-800 hover:text-black bg-slate-100/90 border border-slate-200"
               aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
             >
               {mobileMenuOpen ? (
-                <X className="w-4.5 h-4.5" />
+                <X className="w-5 h-5" />
               ) : (
-                <Menu className="w-4.5 h-4.5" />
+                <Menu className="w-5 h-5" />
               )}
             </button>
           </div>
