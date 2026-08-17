@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Mail, Instagram, MessageSquare, Send, Sparkles, ArrowUpRight, CheckCircle2, ArrowRight, ShieldCheck, Heart } from 'lucide-react';
+import { Phone, Mail, Instagram, MessageSquare, Send, Sparkles, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 
 export default function ContactFooter({ onOpenQuote }) {
   const [formData, setFormData] = useState({
@@ -22,37 +22,37 @@ export default function ContactFooter({ onOpenQuote }) {
     setTimeout(() => {
       window.open(waUrl, '_blank');
       setFormSubmitted(false);
-    }, 800);
+    }, 600);
   };
 
   return (
-    <footer id="contact" className="relative pt-10 sm:pt-12 overflow-hidden bg-[#0A192F] text-white">
+    <footer id="contact" className="relative pt-16 sm:pt-24 overflow-hidden bg-[#0A192F] text-white">
       {/* Glow Orbs */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-72 sm:h-96 bg-gradient-to-b from-[#0077B6]/20 via-transparent to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-72 sm:h-96 bg-gradient-to-b from-[#0077B6]/25 via-transparent to-transparent blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* CTA Banner: "Ready to Transform Your Brand?" */}
-        <div className="p-6 sm:p-12 lg:p-16 rounded-2xl sm:rounded-3xl border border-blue-500/30 shadow-[0_20px_60px_-15px_rgba(0,119,182,0.3)] mb-12 sm:mb-20 text-center relative overflow-hidden bg-gradient-to-r from-[#0077B6] via-[#0096C7] to-[#00B4D8]">
+        <div className="p-8 sm:p-12 lg:p-16 rounded-3xl border border-blue-400/30 shadow-[0_20px_60px_-15px_rgba(0,119,182,0.35)] mb-14 sm:mb-20 text-center relative overflow-hidden bg-gradient-to-r from-[#0077B6] via-[#0096C7] to-[#00B4D8]">
           <div className="absolute top-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-white/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider mb-4 sm:mb-6 border border-white/20">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider mb-4 sm:mb-6 border border-white/25 shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Ready to Grow</span>
           </div>
 
-          <h2 className="text-2xl xs:text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight max-w-3xl mx-auto mb-4 sm:mb-6 text-white">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight max-w-3xl mx-auto mb-4 sm:mb-6 text-white">
             Ready to Transform Your Brand?
           </h2>
 
-          <p className="text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mb-6 sm:mb-10 leading-relaxed font-medium text-blue-100">
+          <p className="text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed font-medium text-blue-100">
             Partner with FourDouble Solutions today for agency-quality web platforms, mobile apps, brand strategy, and AI media production.
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
             <button
               onClick={onOpenQuote}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl sm:rounded-full bg-white text-[#0A192F] font-bold text-sm sm:text-base shadow-xl hover:bg-slate-100 active:scale-[0.98] transition-all flex items-center justify-center gap-2 touch-active"
+              className="w-full sm:w-auto px-7 sm:px-9 py-3.5 sm:py-4 rounded-2xl sm:rounded-full bg-white text-[#0A192F] font-bold text-sm sm:text-base shadow-xl hover:bg-slate-50 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 touch-active"
             >
               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#0077B6]" />
               <span>Get Free Estimate</span>
@@ -62,7 +62,7 @@ export default function ContactFooter({ onOpenQuote }) {
               href="https://wa.me/919562896069"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl sm:rounded-full font-bold text-sm sm:text-base border border-white/40 hover:border-white transition-all flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 active:scale-[0.98] touch-active"
+              className="w-full sm:w-auto px-7 sm:px-9 py-3.5 sm:py-4 rounded-2xl sm:rounded-full font-bold text-sm sm:text-base border border-white/40 hover:border-white transition-all flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md text-white hover:bg-white/20 hover:scale-105 active:scale-95 touch-active"
             >
               <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>WhatsApp Chat</span>
@@ -71,7 +71,7 @@ export default function ContactFooter({ onOpenQuote }) {
         </div>
 
         {/* Contact Info & Form Grid */}
-        <div className="w-full max-w-6xl mx-auto mb-12 sm:mb-20">
+        <div className="w-full max-w-6xl mx-auto mb-14 sm:mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 w-full items-start">
             
             {/* Left Column: Direct Contact Info Blocks */}
@@ -100,14 +100,14 @@ export default function ContactFooter({ onOpenQuote }) {
                   href="https://wa.me/919562896069"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full p-4 sm:p-5 rounded-xl sm:rounded-2xl border border-slate-800 hover:border-emerald-500 bg-slate-900/80 backdrop-blur-xl shadow-sm flex items-center justify-between group transition-all touch-active"
+                  className="w-full p-4 sm:p-5 rounded-2xl border border-slate-800 hover:border-emerald-500 bg-slate-900/80 backdrop-blur-xl shadow-sm flex items-center justify-between group transition-all touch-active hover:-translate-y-0.5"
                 >
-                  <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
                     <div className="p-2.5 sm:p-3 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shrink-0">
                       <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
                     <div className="min-w-0">
-                      <span className="text-[10px] sm:text-xs font-bold uppercase text-slate-400 block">
+                      <span className="text-[10px] sm:text-xs font-bold uppercase text-slate-400 block mb-0.5">
                         Phone / WhatsApp
                       </span>
                       <p className="text-sm sm:text-base font-bold text-white group-hover:text-emerald-400 transition-colors truncate">
@@ -115,20 +115,20 @@ export default function ContactFooter({ onOpenQuote }) {
                       </p>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all shrink-0 ml-2" />
+                  <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 ml-2" />
                 </a>
 
                 {/* Email */}
                 <a
                   href="mailto:fourdoublesolution@gmail.com"
-                  className="w-full p-4 sm:p-5 rounded-xl sm:rounded-2xl border border-slate-800 hover:border-[#00B4D8] bg-slate-900/80 backdrop-blur-xl shadow-sm flex items-center justify-between group transition-all touch-active"
+                  className="w-full p-4 sm:p-5 rounded-2xl border border-slate-800 hover:border-[#00B4D8] bg-slate-900/80 backdrop-blur-xl shadow-sm flex items-center justify-between group transition-all touch-active hover:-translate-y-0.5"
                 >
-                  <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
                     <div className="p-2.5 sm:p-3 rounded-xl bg-cyan-500/10 text-[#00B4D8] border border-cyan-500/30 shrink-0">
                       <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
                     <div className="min-w-0">
-                      <span className="text-[10px] sm:text-xs font-bold uppercase text-slate-400 block">
+                      <span className="text-[10px] sm:text-xs font-bold uppercase text-slate-400 block mb-0.5">
                         Email Address
                       </span>
                       <p className="text-xs xs:text-sm sm:text-base font-bold text-white group-hover:text-[#00B4D8] transition-colors break-all">
@@ -136,7 +136,7 @@ export default function ContactFooter({ onOpenQuote }) {
                       </p>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 group-hover:text-[#00B4D8] group-hover:translate-x-1 transition-all shrink-0 ml-2" />
+                  <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 group-hover:text-[#00B4D8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 ml-2" />
                 </a>
 
                 {/* Instagram */}
@@ -144,14 +144,14 @@ export default function ContactFooter({ onOpenQuote }) {
                   href="https://instagram.com/fourdouble._"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full p-4 sm:p-5 rounded-xl sm:rounded-2xl border border-slate-800 hover:border-pink-500 bg-slate-900/80 backdrop-blur-xl shadow-sm flex items-center justify-between group transition-all touch-active"
+                  className="w-full p-4 sm:p-5 rounded-2xl border border-slate-800 hover:border-pink-500 bg-slate-900/80 backdrop-blur-xl shadow-sm flex items-center justify-between group transition-all touch-active hover:-translate-y-0.5"
                 >
-                  <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
                     <div className="p-2.5 sm:p-3 rounded-xl bg-pink-500/10 text-pink-400 border border-pink-500/30 shrink-0">
                       <Instagram className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
                     <div className="min-w-0">
-                      <span className="text-[10px] sm:text-xs font-bold uppercase text-slate-400 block">
+                      <span className="text-[10px] sm:text-xs font-bold uppercase text-slate-400 block mb-0.5">
                         Instagram Handle
                       </span>
                       <p className="text-sm sm:text-base font-bold text-white group-hover:text-pink-400 transition-colors truncate">
@@ -159,14 +159,14 @@ export default function ContactFooter({ onOpenQuote }) {
                       </p>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 group-hover:text-pink-400 group-hover:translate-x-1 transition-all shrink-0 ml-2" />
+                  <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 group-hover:text-pink-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 ml-2" />
                 </a>
 
               </div>
             </div>
 
             {/* Right Column: Contact Message Form */}
-            <div className="w-full bg-slate-900/90 backdrop-blur-2xl p-4 sm:p-8 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-2xl relative">
+            <div className="w-full bg-slate-900/90 backdrop-blur-2xl p-5 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl relative">
               <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-1.5 sm:mb-2">
                 Send Us a Direct Message
               </h3>
@@ -254,7 +254,7 @@ export default function ContactFooter({ onOpenQuote }) {
                 <button
                   type="submit"
                   disabled={formSubmitted}
-                  className="w-full p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 font-bold text-white text-sm sm:text-base shadow-lg active:scale-[0.98] transition-all flex items-center justify-center gap-2 touch-active"
+                  className="w-full p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 font-bold text-white text-sm sm:text-base shadow-lg active:scale-[0.98] transition-all flex items-center justify-center gap-2 touch-active hover:scale-[1.01]"
                 >
                   {formSubmitted ? (
                     <>
@@ -275,18 +275,18 @@ export default function ContactFooter({ onOpenQuote }) {
         </div>
 
         {/* Footer Sub-Bar */}
-        <div className="pt-6 pb-10 border-t border-slate-800 text-slate-400 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+        <div className="pt-6 pb-12 border-t border-slate-800/80 text-slate-400 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <div className="flex items-center gap-2 text-center md:text-left">
             <img src="/assets/logos/main logo.png" alt="FourDouble Logo" className="w-4 h-4 object-contain shrink-0" />
             <span className="font-bold text-white">© FourDouble Solutions.</span>
             <span>All Rights Reserved.</span>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs font-medium">
             <a href="#home" className="hover:text-[#00B4D8] transition-colors">Home</a>
-            <a href="#about" className="hover:text-[#00B4D8] transition-colors">About</a>
             <a href="#services" className="hover:text-[#00B4D8] transition-colors">Services</a>
-            <a href="#portfolio" className="hover:text-[#00B4D8] transition-colors">Featured Work</a>
+            <a href="#portfolio" className="hover:text-[#00B4D8] transition-colors">Portfolio</a>
+            <a href="#about" className="hover:text-[#00B4D8] transition-colors">About</a>
             <a href="#process" className="hover:text-[#00B4D8] transition-colors">Process</a>
             <a href="#contact" className="hover:text-[#00B4D8] transition-colors">Contact</a>
           </div>
@@ -300,3 +300,4 @@ export default function ContactFooter({ onOpenQuote }) {
     </footer>
   );
 }
+

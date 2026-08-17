@@ -179,7 +179,7 @@ export default function InstantQuote({ onOpenQuote }) {
   };
 
   return (
-    <section id="quote" className="py-16 sm:py-24 relative overflow-hidden bg-gradient-to-b from-[#F8FAFC] via-white to-[#F1F5F9]">
+    <section id="quote" className="py-16 sm:py-24 relative overflow-hidden bg-white">
       
       {/* Background Decorative Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[350px] sm:w-[800px] h-[350px] sm:h-[800px] bg-[#0077B6]/8 rounded-full blur-[120px] sm:blur-[180px] pointer-events-none" />
@@ -212,7 +212,7 @@ export default function InstantQuote({ onOpenQuote }) {
               className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 shrink-0 touch-active ${
                 activeTab === cat.id
                   ? 'bg-[#0A192F] text-white shadow-md scale-105'
-                  : 'bg-white text-slate-600 hover:text-[#0077B6] border border-slate-200/90'
+                  : 'bg-[#F8FAFC] text-slate-600 hover:text-[#0077B6] border border-slate-200/90'
               }`}
             >
               {cat.label}
@@ -236,7 +236,7 @@ export default function InstantQuote({ onOpenQuote }) {
                 className={`group relative rounded-2xl sm:rounded-3xl p-5 sm:p-6 border transition-all duration-300 cursor-pointer flex flex-col justify-between touch-active ${
                   isSelected
                     ? 'bg-white border-[#0077B6] shadow-xl ring-2 ring-[#0077B6]/20 -translate-y-1'
-                    : 'bg-white/80 backdrop-blur-md border-slate-200/90 hover:border-blue-300 hover:shadow-lg hover:-translate-y-0.5'
+                    : 'bg-[#F8FAFC] border-slate-200/90 hover:border-blue-300 hover:shadow-lg hover:-translate-y-0.5'
                 }`}
               >
                 {/* Selection indicator pill */}
@@ -245,7 +245,7 @@ export default function InstantQuote({ onOpenQuote }) {
                     <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white text-slate-700 border border-slate-200">
                       {service.badge}
                     </span>
                     <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all ${

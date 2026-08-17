@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, FileText, ExternalLink, ArrowUpRight, Clock, Layers, Video, Wand2, Play, ShoppingCart } from 'lucide-react';
+import { Sparkles, FileText, ExternalLink, ArrowUpRight, Clock, Wand2, ShoppingCart } from 'lucide-react';
 
 export default function SpecialProducts({ onOpenDemo }) {
   const featuredWork = [
@@ -44,7 +44,7 @@ export default function SpecialProducts({ onOpenDemo }) {
     },
     {
       id: 'ecommerce-demo',
-      title: 'E-Commerce Demo',
+      title: 'E-Commerce Storefront Demo',
       subtitle: 'Online Storefront & Cart',
       badge: 'Updating Soon',
       category: 'E-Commerce Platform',
@@ -71,38 +71,38 @@ export default function SpecialProducts({ onOpenDemo }) {
   ];
 
   return (
-    <section id="portfolio" className="py-16 sm:py-24 relative overflow-hidden bg-white">
-      {/* Background Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[700px] bg-[#0077B6]/10 rounded-full blur-[120px] sm:blur-[180px] pointer-events-none" />
+    <section id="portfolio" className="py-20 sm:py-28 lg:py-32 relative overflow-hidden bg-[#F8FAFC]">
+      {/* Background Ambient Lighting */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[700px] bg-[#0077B6]/10 rounded-full blur-[140px] sm:blur-[180px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 text-[#0077B6] border border-blue-200 text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 text-[#0077B6] border border-blue-200 text-xs font-bold uppercase tracking-wider mb-3.5 sm:mb-4 shadow-2xs">
             <Sparkles className="w-3.5 h-3.5 text-[#0077B6]" />
-            <span>FourDouble Solutions</span>
+            <span>Featured Portfolio & Demos</span>
           </div>
 
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6 text-[#0A192F]">
-            Featured <span className="text-gradient-electric">Projects & Demos</span>
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6 text-[#0A192F] leading-tight">
+            Featured <span className="text-gradient-electric">Projects & Live Demos</span>
           </h2>
 
-          <p className="text-sm sm:text-base lg:text-lg text-slate-600">
-            Explore our featured digital products, live applications, professional credentials, and upcoming software demos.
+          <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed font-normal">
+            Explore our custom digital creations, live client applications, verified career credentials, and interactive software prototypes.
           </p>
         </div>
 
         {/* Featured Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {featuredWork.map((project) => (
             <div
               key={project.id}
-              className="group rounded-2xl sm:rounded-3xl bg-[#F8FAFC] border border-slate-200/90 shadow-sm hover:shadow-xl sm:hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-between hover:-translate-y-1"
+              className="group rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl sm:hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-between hover:-translate-y-1"
             >
               <div>
                 {/* Project Image Preview Frame */}
-                <div className="relative h-44 xs:h-52 sm:h-60 overflow-hidden bg-slate-900">
+                <div className="relative h-48 xs:h-56 sm:h-64 overflow-hidden bg-slate-900">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -113,14 +113,14 @@ export default function SpecialProducts({ onOpenDemo }) {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/85 via-transparent to-transparent" />
 
                   {/* Top Left Badge */}
-                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                  <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4">
                     {project.actionType === 'placeholder' ? (
-                      <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full bg-amber-500/90 text-white backdrop-blur-md shadow-sm">
+                      <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full bg-amber-500/90 text-white backdrop-blur-md shadow-sm">
                         <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                         {project.badge}
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full bg-white/95 text-[#0A192F] backdrop-blur-md shadow-sm">
+                      <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full bg-white/95 text-[#0A192F] backdrop-blur-md shadow-sm">
                         {project.badge}
                       </span>
                     )}
@@ -129,7 +129,7 @@ export default function SpecialProducts({ onOpenDemo }) {
                   {/* Center Placeholder Overlay */}
                   {project.actionType === 'placeholder' && (
                     <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] flex items-center justify-center p-3">
-                      <span className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/90 text-[#0A192F] text-[11px] sm:text-xs font-extrabold uppercase tracking-wider shadow-lg border border-white/50 flex items-center gap-2">
+                      <span className="px-4 py-2 rounded-full bg-white/90 text-[#0A192F] text-xs font-extrabold uppercase tracking-wider shadow-lg border border-white/50 flex items-center gap-2">
                         <Clock className="w-3.5 h-3.5 text-amber-600 animate-pulse" />
                         <span>{project.statusBadge}</span>
                       </span>
@@ -144,7 +144,7 @@ export default function SpecialProducts({ onOpenDemo }) {
                 </div>
 
                 {/* Content */}
-                <div className="p-4 sm:p-6">
+                <div className="p-5 sm:p-6 lg:p-7">
                   <h3 className="text-lg sm:text-xl font-extrabold text-[#0A192F] mb-2 group-hover:text-[#0077B6] transition-colors leading-snug">
                     {project.title}
                   </h3>
@@ -156,7 +156,7 @@ export default function SpecialProducts({ onOpenDemo }) {
                   {/* Tech Tags */}
                   <div className="flex flex-wrap gap-1.5 mb-4 sm:mb-6">
                     {project.tags.map((tag, idx) => (
-                      <span key={idx} className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md text-[10px] sm:text-[11px] font-semibold bg-white text-slate-700 border border-slate-200/80 shadow-2xs">
+                      <span key={idx} className="px-2.5 py-1 rounded-md text-[10px] sm:text-[11px] font-semibold bg-slate-50 text-slate-700 border border-slate-200/80 shadow-2xs">
                         {tag}
                       </span>
                     ))}
@@ -165,7 +165,7 @@ export default function SpecialProducts({ onOpenDemo }) {
               </div>
 
               {/* Action Bar */}
-              <div className="p-4 sm:p-6 pt-0 flex items-center gap-3">
+              <div className="p-5 sm:p-6 lg:p-7 pt-0 flex items-center gap-3">
                 {project.actionType === 'link' ? (
                   <a
                     href={project.link}
@@ -217,3 +217,4 @@ export default function SpecialProducts({ onOpenDemo }) {
     </section>
   );
 }
+

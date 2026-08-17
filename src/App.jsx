@@ -45,14 +45,28 @@ export default function App() {
 
       {/* Main Content Sections */}
       <main className="relative z-10">
+        {/* 1. 3D Scroll Hero Section */}
         <Hero onOpenQuote={() => setIsQuoteOpen(true)} />
+
+        {/* 2. Core Capabilities & Services */}
         <Services onOpenQuote={() => setIsQuoteOpen(true)} />
+
+        {/* 3. Featured Work, Live Sites & Interactive Demos */}
         <SpecialProducts onOpenDemo={(demoId) => setActiveDemo(demoId)} />
+
+        {/* 4. About Agency, Value Proposition & Client Pillars */}
         <About onOpenQuote={() => setIsQuoteOpen(true)} />
+
+        {/* 5. 4-Step Execution Process & Roadmap */}
         <Process onOpenQuote={() => setIsQuoteOpen(true)} />
+
+        {/* 6. Client Reviews & Social Proof */}
         <Testimonials />
+
+        {/* 7. High-Impact CTA, Direct Channels & Contact Footer */}
         <ContactFooter onOpenQuote={() => setIsQuoteOpen(true)} />
       </main>
+
 
       {/* Interactive Modals */}
       <QuoteEstimatorModal
@@ -64,6 +78,7 @@ export default function App() {
         activeDemo={activeDemo}
         onClose={() => setActiveDemo(null)}
       />
+
 
       {/* Floating Action Buttons: Scroll-To-Top & Floating WhatsApp */}
       <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-center gap-2.5 sm:gap-3">
