@@ -9,6 +9,7 @@ export default function ParticleBackground() {
 
     const ctx = canvas.getContext('2d');
     let animationFrameId;
+    let isRunning = true;
 
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
@@ -21,12 +22,24 @@ export default function ParticleBackground() {
 
     window.addEventListener('resize', handleResize, { passive: true });
 
-    // Mobile optimized particle count
+    // Pause canvas loop when tab is hidden to save CPU/GPU and battery
+    const handleVisibility = () => {
+      if (document.hidden) {
+        isRunning = false;
+        cancelAnimationFrame(animationFrameId);
+      } else {
+        isRunning = true;
+        animate();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+
     const isMobile = width < 768;
-    const particleCount = isMobile ? Math.min(Math.floor(width / 22), 25) : Math.min(Math.floor(width / 16), 75);
-    const maxLinkDistance = isMobile ? 95 : 125;
+    const particleCount = isMobile ? 18 : 45;
+    const maxLinkDist = isMobile ? 80 : 115;
+    const maxLinkDistSq = maxLinkDist * maxLinkDist;
     const particles = [];
-    const mouse = { x: null, y: null, radius: isMobile ? 100 : 150 };
+    const mouse = { x: null, y: null, radiusSq: isMobile ? 6400 : 14400 };
 
     const handleMouseMove = (e) => {
       mouse.x = e.clientX;
@@ -56,10 +69,10 @@ export default function ParticleBackground() {
       constructor() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * (isMobile ? 0.4 : 0.6);
-        this.vy = (Math.random() - 0.5) * (isMobile ? 0.4 : 0.6);
-        this.radius = Math.random() * 1.6 + 0.8;
-        this.baseAlpha = Math.random() * 0.35 + 0.2;
+        this.vx = (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5);
+        this.vy = (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5);
+        this.radius = Math.random() * 1.5 + 0.8;
+        this.baseAlpha = Math.random() * 0.3 + 0.2;
         this.alpha = this.baseAlpha;
       }
 
@@ -75,11 +88,11 @@ export default function ParticleBackground() {
         if (mouse.x !== null && mouse.y !== null) {
           const dx = mouse.x - this.x;
           const dy = mouse.y - this.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < mouse.radius) {
-            const force = (mouse.radius - dist) / mouse.radius;
-            this.alpha = Math.min(0.8, this.baseAlpha + force * 0.4);
+          if (distSq < mouse.radiusSq) {
+            const force = (Math.sqrt(mouse.radiusSq) - Math.sqrt(distSq)) / Math.sqrt(mouse.radiusSq);
+            this.alpha = Math.min(0.75, this.baseAlpha + force * 0.35);
           } else {
             this.alpha = this.baseAlpha;
           }
@@ -99,24 +112,27 @@ export default function ParticleBackground() {
     }
 
     const animate = () => {
+      if (!isRunning) return;
       ctx.clearRect(0, 0, width, height);
 
       for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
+        const p1 = particles[i];
+        p1.update();
+        p1.draw();
 
         for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < maxLinkDistance) {
-            const opacity = (1 - dist / maxLinkDistance) * 0.3;
+          if (distSq < maxLinkDistSq) {
+            const opacity = (1 - Math.sqrt(distSq) / maxLinkDist) * 0.22;
             ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(${particleRgb}, ${opacity})`;
-            ctx.lineWidth = 0.75;
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(${particleRgb}, ${opacity.toFixed(2)})`;
+            ctx.lineWidth = 0.7;
             ctx.stroke();
           }
         }
@@ -128,11 +144,13 @@ export default function ParticleBackground() {
     animate();
 
     return () => {
+      isRunning = false;
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('touchend', handleMouseLeave);
+      document.removeEventListener('visibilitychange', handleVisibility);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -140,7 +158,7 @@ export default function ParticleBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-80"
+      className="fixed inset-0 pointer-events-none z-0 opacity-70"
     />
   );
 }

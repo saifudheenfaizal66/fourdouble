@@ -17,31 +17,36 @@ export default function Navbar({ onOpenQuote }) {
   ];
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          setIsScrolled(scrollY > 20);
 
-      const heroEl = document.getElementById('home');
-      if (heroEl) {
-        const rect = heroEl.getBoundingClientRect();
-        const isComplete = rect.bottom <= 120;
-        setHeroComplete(isComplete);
-      } else {
-        setHeroComplete(window.scrollY > 600);
-      }
-
-      // Active Section Spy
-      const sections = ['home', 'services', 'portfolio', 'about', 'process', 'contact'];
-      const scrollPosition = window.scrollY + 200;
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el) {
-          const top = el.offsetTop;
-          if (scrollPosition >= top) {
-            setActiveSection(sections[i]);
-            break;
+          const heroEl = document.getElementById('home');
+          if (heroEl) {
+            const isComplete = scrollY >= heroEl.offsetHeight - 140;
+            setHeroComplete(isComplete);
+          } else {
+            setHeroComplete(scrollY > 600);
           }
-        }
+
+          // Active Section Spy
+          const sections = ['home', 'services', 'portfolio', 'about', 'process', 'contact'];
+          const scrollPosition = scrollY + 220;
+
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const el = document.getElementById(sections[i]);
+            if (el && scrollPosition >= el.offsetTop) {
+              setActiveSection(sections[i]);
+              break;
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 

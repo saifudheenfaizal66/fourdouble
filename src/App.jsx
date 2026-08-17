@@ -18,11 +18,12 @@ export default function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
+    let prev = false;
     const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
+      const shouldShow = window.scrollY > 400;
+      if (shouldShow !== prev) {
+        prev = shouldShow;
+        setShowScrollTop(shouldShow);
       }
     };
 
