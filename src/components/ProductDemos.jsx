@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Check, ShoppingCart, Calendar, FileText, Sparkles, Send, Plus, Trash2, Video, Wand2, Play, Pause, Volume2, RefreshCw, Film } from 'lucide-react';
+import { X, Check, ShoppingCart, Calendar, FileText, Sparkles, Send, Plus, Trash2, Video, Wand2, Play, Pause, Volume2, RefreshCw, Film, ExternalLink } from 'lucide-react';
 
 export default function ProductDemos({ activeDemo, onClose }) {
   if (!activeDemo) return null;
@@ -589,9 +589,15 @@ function AiVideoDemo() {
               <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping" />
               <span className="text-[11px] sm:text-xs font-bold text-purple-300 uppercase tracking-wider">AI Video Generator Studio</span>
             </div>
-            <span className="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-mono font-bold border border-purple-500/30">
-              4K HDR 60FPS
-            </span>
+            <a
+              href="https://drive.google.com/file/d/1K9pSVmYKVTvGMflamO6bL6RbkYactPL8/view?usp=drivesdk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2.5 py-0.5 rounded-full bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 text-[10px] font-bold border border-purple-500/30 flex items-center gap-1 transition-colors touch-active"
+            >
+              <span>Watch Drive Demo</span>
+              <ExternalLink className="w-2.5 h-2.5" />
+            </a>
           </div>
 
           {/* Simulated Video Canvas */}
@@ -656,8 +662,18 @@ function AiVideoDemo() {
                 </div>
                 <h5 className="text-xs sm:text-sm font-bold text-slate-200">Ready to Render AI Video</h5>
                 <p className="text-[11px] sm:text-xs text-slate-400 max-w-xs mx-auto">
-                  Click 'Simulate Video Generation' to launch the generative rendering pipeline simulation.
+                  Click 'Simulate Video Generation' to launch the generative rendering pipeline simulation, or watch our real client demo video.
                 </p>
+                <a
+                  href="https://drive.google.com/file/d/1K9pSVmYKVTvGMflamO6bL6RbkYactPL8/view?usp=drivesdk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-600/40 hover:bg-purple-600/60 border border-purple-500/50 text-purple-200 text-[11px] font-bold transition-all touch-active"
+                >
+                  <Play className="w-3 h-3 fill-purple-300 text-purple-300" />
+                  <span>Watch Client Demo Video (Google Drive)</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </div>
             )}
           </div>
@@ -685,7 +701,18 @@ function AiVideoDemo() {
         </div>
       </div>
 
-      <div className="mt-5 sm:mt-6 flex justify-end">
+      <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <a
+          href="https://drive.google.com/file/d/1K9pSVmYKVTvGMflamO6bL6RbkYactPL8/view?usp=drivesdk"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full sm:w-auto px-4 py-3 rounded-xl bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-700 font-bold text-xs flex items-center justify-center gap-2 transition-all touch-active"
+        >
+          <Play className="w-3.5 h-3.5 fill-purple-600 text-purple-600" />
+          <span>Watch Real Client Demo Video</span>
+          <ExternalLink className="w-3.5 h-3.5 text-purple-500" />
+        </a>
+
         <a
           href="https://wa.me/919562896069?text=Hi%20FourDouble%20Solutions%2C%20I%20want%20to%20order%20Custom%20AI%20Video%20Generation%20based%20on%20my%20client%20requirements."
           target="_blank"

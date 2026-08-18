@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, FileText, ExternalLink, ArrowUpRight, Clock, Wand2, ShoppingCart } from 'lucide-react';
+import { Sparkles, FileText, ExternalLink, ArrowUpRight, Clock, Wand2, ShoppingCart, Play } from 'lucide-react';
 
 export default function SpecialProducts({ onOpenDemo }) {
   const featuredWork = [
@@ -7,14 +7,14 @@ export default function SpecialProducts({ onOpenDemo }) {
       id: 'ai-video-studio',
       title: 'Custom Client AI Video Production',
       subtitle: 'Tailored Video & Avatar Creation',
-      badge: 'Interactive Demo',
+      badge: 'Demo Video',
       category: 'Client-Tailored AI Video',
       desc: 'We create customized 4K AI video commercials, photorealistic spokesperson avatars, product visualizers, and social media reels tailored strictly to your specific client requirements, script, and brand guidelines.',
-      tags: ['Client Requirements', 'Custom AI Avatars', 'Brand Commercials', 'Tailored Reels'],
+      tags: ['4K AI Video', 'AI Avatars', 'Commercial Ads', 'Google Drive'],
       image: '/assets/projects/ai-video-production.jpg',
-      actionType: 'demo',
-      demoId: 'ai-video',
-      buttonText: 'Preview AI Video Service',
+      actionType: 'link',
+      link: 'https://drive.google.com/file/d/1K9pSVmYKVTvGMflamO6bL6RbkYactPL8/view?usp=drivesdk',
+      buttonText: 'Watch Demo Video',
     },
     {
       id: 'digital-invitation',
@@ -171,15 +171,21 @@ export default function SpecialProducts({ onOpenDemo }) {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all bg-[#0077B6] hover:bg-[#005f92] text-white shadow-md active:scale-[0.98] group/btn touch-active"
+                    className={`w-full py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all text-white shadow-md active:scale-[0.98] group/btn touch-active ${
+                      project.id === 'ai-video-studio'
+                        ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-purple-500/25'
+                        : 'bg-[#0077B6] hover:bg-[#005f92]'
+                    }`}
                   >
                     {project.id === 'ats-cv' ? (
                       <FileText className="w-4 h-4 text-cyan-200" />
+                    ) : project.id === 'ai-video-studio' ? (
+                      <Play className="w-4 h-4 text-purple-200 fill-purple-200" />
                     ) : (
                       <ExternalLink className="w-4 h-4 text-cyan-200" />
                     )}
                     <span>{project.buttonText}</span>
-                    <ArrowUpRight className="w-4 h-4 text-cyan-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                    <ArrowUpRight className="w-4 h-4 text-white/80 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                   </a>
                 ) : project.actionType === 'demo' ? (
                   <button

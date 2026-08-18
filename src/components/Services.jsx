@@ -185,6 +185,17 @@ export default function Services({ onOpenQuote }) {
                   </span>
 
                   <div className="flex items-center gap-2 shrink-0">
+                    {service.id === 'ai-video-gen' && (
+                      <a
+                        href="https://drive.google.com/file/d/1K9pSVmYKVTvGMflamO6bL6RbkYactPL8/view?usp=drivesdk"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-600 bg-purple-50 hover:bg-purple-100 px-3 sm:px-3.5 py-2 rounded-full border border-purple-200 transition-all touch-active"
+                      >
+                        <Film className="w-3.5 h-3.5" />
+                        <span>Watch Demo</span>
+                      </a>
+                    )}
                     <button
                       onClick={onOpenQuote}
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0077B6] bg-blue-50 hover:bg-blue-100 px-3.5 sm:px-4 py-2 rounded-full border border-blue-200 transition-all touch-active"
